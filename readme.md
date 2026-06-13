@@ -6,6 +6,10 @@ TasksJS allows users to create and organize task lists, manage individual tasks,
 
 ---
 
+## Live Demo
+
+https://tasks-js-eight.vercel.app
+
 ## Features
 
 ### Authentication
@@ -126,18 +130,19 @@ Navigate to the server directory:
 cd server
 ```
 
-Install dependencies:
+Install dependencies and build dist folder:
 
 ```bash
 npm install
+npm run build
 ```
 
-Create a `.env` file using `.env.example` as a reference.
+Create a `.env` file in server directory using `.env.example` as a reference.
 
 Start the development server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 ---
@@ -150,18 +155,19 @@ Navigate to the client directory:
 cd client
 ```
 
-Install dependencies:
+Install dependencies and build dist folder:
 
 ```bash
 npm install
+npm run build
 ```
 
-Create a `.env` file using `.env.example` as a reference.
+Create a `.env` file in client directory using `.env.example` as a reference.
 
-Start the development server:
+Start the preview server:
 
 ```bash
-npm run dev
+npm run preview
 ```
 
 ---
@@ -170,23 +176,26 @@ npm run dev
 
 ### Backend
 
-Example:
-
 ```env
-PORT=
-MONGODB_URI=
-JWT_SECRET=
+PORT=3000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1h
+FRONTEND_URL=your_frontend_url
+NODE_ENV=development/production
 ```
 
 ### Frontend
 
-Example:
-
 ```env
-VITE_API_URL=
+VITE_API_URL=your_api_url
 ```
 
 Refer to the included `.env.example` files for the complete configuration.
+
+---
+
+> The backend server must be running before starting the frontend application.
 
 ---
 

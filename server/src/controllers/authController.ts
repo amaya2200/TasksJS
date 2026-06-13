@@ -48,8 +48,8 @@ const authController = {
 
       res.cookie('access_token', user.token, {
         httpOnly: true,
-        secure: config.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: true,
+        sameSite: 'none',
         maxAge: ms(config.JWT_EXPIRES_IN),
       });
 
@@ -89,8 +89,8 @@ const authController = {
   async logout(req: Request, res: Response) {
     res.clearCookie('access_token', {
       httpOnly: true,
-      secure: config.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
     });
     res.status(200).json({
       message: 'User logged out successfully',
