@@ -59,16 +59,16 @@ export const authService = {
     }
   },
 
-  async changePassword(data: { username: string, oldPassword: string, newPassword: string }) {
+  async changePassword(data: { username: string, password: string, newPassword: string }) {
 
-    const { username, oldPassword, newPassword } = data;
+    const { username, password, newPassword } = data;
 
     const user = await UserModel.findOne({ username });
     if (!user) {
       throw new Error('user or password incorrect');
     }
 
-    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       throw new Error('user or password incorrect');
     }

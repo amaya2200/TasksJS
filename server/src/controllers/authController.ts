@@ -101,9 +101,9 @@ const authController = {
 
     try {
 
-      const { username, oldPassword, newPassword } = req.body;
+      const { username, password, newPassword } = req.body;
 
-      const user = await authService.changePassword({ username, oldPassword, newPassword });
+      const user = await authService.changePassword({ username, password, newPassword });
 
       res.status(200).json({
         message: 'Password changed successfully',
