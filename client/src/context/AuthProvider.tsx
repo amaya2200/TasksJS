@@ -9,14 +9,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const login = (username: string, password: string) => {
-    authService.login({username, password});
-    setIsAuthenticated(true);
-    setUsername(username);
+  const login = async (username: string, password: string) => {
+    const response = await authService.login({username, password});
+    if(response.status === 200){
+      setIsAuthenticated(true);
+      setUsername(username);
+    }
   };
 
-  const logout = () => {
-    authService.logout();
+  const logout = async () => {
+    await authService.logout();
     setIsAuthenticated(false);
     setUsername('');
   };
