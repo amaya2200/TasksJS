@@ -37,22 +37,24 @@ export const RegisterComponent = () => {
     }
 
     return (
-        <div className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center">
-            <div className='flex flex-col w-full'>
-                <label className='text-sm'>Username:</label>
-                <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} className='p-1 rounded-md border'></input>
+        <div className ="h-full flex items-center justify-center">
+            <div className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center">
+                <div className='flex flex-col w-full'>
+                    <label className='text-sm'>Username:</label>
+                    <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} className='p-1 rounded-md border'></input>
+                </div>
+                <div className='flex flex-col w-full'>
+                    <label className='text-sm'>Password:</label>
+                    <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} className='p-1 rounded-md border'></input>
+                </div>
+                <div className='flex flex-col w-full'>
+                    <label className='text-sm'>Confirm Password:</label>
+                    <input id="repassword" type="password" value={repassword} onChange={e => setRepassword(e.target.value)} className='p-1 rounded-md border'></input>
+                </div>
+                <button onClick={handleButton} className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Create User</button>
+                <Link className="hover:underline" to="/login">← Back</Link>
+                <Toaster />
             </div>
-            <div className='flex flex-col w-full'>
-                <label className='text-sm'>Password:</label>
-                <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} className='p-1 rounded-md border'></input>
-            </div>
-            <div className='flex flex-col w-full'>
-                <label className='text-sm'>Confirm Password:</label>
-                <input id="repassword" type="password" value={repassword} onChange={e => setRepassword(e.target.value)} className='p-1 rounded-md border'></input>
-            </div>
-            <button onClick={handleButton} className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Create User</button>
-            <Link className="hover:underline" to="/login">← Back</Link>
-            <Toaster />
         </div>
     )
 }
