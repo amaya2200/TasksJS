@@ -11,7 +11,7 @@ export const LoginComponent = () => {
     const authContext = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleButton = async () => {
+    const handleLogin = async () => {
 
         try {
             await authContext?.login(username, password);
@@ -28,7 +28,10 @@ export const LoginComponent = () => {
 
     return (
         <div className ="h-full flex items-center justify-center">
-            <div className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center">
+            <form
+                className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center"
+                onSubmit={e => {e.preventDefault(); handleLogin();}}
+            >
                 <div className='flex flex-col w-full'>
                     <label className='text-sm'>Username:</label>
                     <input id="username" type="text" value={username} onChange={e => setUsername(e.target.value)} className='p-1 rounded-md border'></input>
@@ -37,10 +40,10 @@ export const LoginComponent = () => {
                     <label className='text-sm'>Password:</label>
                     <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} className='p-1 rounded-md border'></input>
                 </div>
-                <button onClick={handleButton} className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Login</button>
+                <button type="submit" className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Login</button>
                 <Link className="hover:underline" to="/register">Not registered? Register Here</Link>
                 <Toaster />
-            </div>
+            </form>
         </div>
     )
 }
