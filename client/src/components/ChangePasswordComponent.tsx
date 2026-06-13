@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { authService } from '../services/authService';
 import toast, { Toaster } from 'react-hot-toast';
 import {AuthContext} from '../context/AuthContext';
+import { AxiosError } from 'axios';
 
 export const ChangePasswordComponent = () => {
     
@@ -30,8 +31,8 @@ export const ChangePasswordComponent = () => {
             toast.success(request.data.message || 'Password updated successfully');
             navigate('/');
         } catch (error) {
-            if(error instanceof Error){
-                toast.error(error.message);
+            if(error instanceof AxiosError){
+                toast.error(error.response?.data.message);
             } else {
                 toast.error('Error While changing password');
             }

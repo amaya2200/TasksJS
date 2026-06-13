@@ -32,7 +32,14 @@ export const authService = {
 
   async changePassword(data: { username: string; newPassword: string ; oldPassword: string }) {
     validatePassword(data.newPassword);
-    return api.post('/auth/changePassword', data);
+
+    return api.post('/auth/changePassword',
+      {
+        username: data.username,
+        password: data.oldPassword,
+        newPassword: data.newPassword
+      }
+    );
   },
 
   async checkAuthStatus ():Promise<{isAuthenticated: boolean;username: string;}>{
