@@ -8,5 +8,6 @@ authRoutes.post('/register', authMiddleware.validateRegister, authController.reg
 authRoutes.post('/login', authMiddleware.validateLogin, authController.login);
 authRoutes.get('/check', authMiddleware.authenticateJWT, authController.checkSessionStatus);
 authRoutes.post('/logout', authMiddleware.authenticateJWT, authController.logout);
+authRoutes.post('/changePassword', authMiddleware.authenticateJWT, authMiddleware.validateChangePassword, authController.changePassword);
 
 export default authRoutes;

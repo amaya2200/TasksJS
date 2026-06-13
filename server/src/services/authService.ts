@@ -59,4 +59,28 @@ export const authService = {
     }
   },
 
+  async changePassword(data: { username: string, oldPassword: string, newPassword: string }) {
+
+    const { username, oldPassword, newPassword } = data;
+
+    const user = await UserModel.findOne({ username });
+    if (!user) {
+      throw new Error('user or password incorrect');
+    }
+
+    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    if (!isPasswordValid) {
+      throw new Error('user or password incorrect');
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedNewPassword;
+    await user.save();
+
+    return {
+      id: user._id,
+      username: user.username,
+    }
+  }
+
 }

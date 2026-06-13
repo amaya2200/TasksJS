@@ -12,7 +12,7 @@ export const ChangePasswordComponent = () => {
     const navigate = useNavigate();
     const context = useContext(AuthContext);
 
-    const handleButton = async () => {
+    const handleChangePassword = async () => {
 
         if(!oldPassword || !newPassword || !repassword){
             toast.error('Please complete all fields');
@@ -41,10 +41,13 @@ export const ChangePasswordComponent = () => {
 
     return (
         <div className ="h-full flex items-center justify-center">
-            <div className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center">
+            <form
+                className="bg-white rounded-2xl shadow-md p-6 flex gap-4 flex-col items-center"
+                onSubmit={(e) => {e.preventDefault();handleChangePassword();}}
+            >
                 <div className='flex flex-col w-full'>
                     <label className='text-sm'>Current Password:</label>
-                    <input id="oldPassword" type="text" value={oldPassword} onChange={e => setOldPassword(e.target.value)} className='p-1 rounded-md border'></input>
+                    <input id="oldPassword" type="password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} className='p-1 rounded-md border'></input>
                 </div>
                 <div className='flex flex-col w-full'>
                     <label className='text-sm'>New Password:</label>
@@ -54,10 +57,10 @@ export const ChangePasswordComponent = () => {
                     <label className='text-sm'>Confirm New Password:</label>
                     <input id="repassword" type="password" value={repassword} onChange={e => setRepassword(e.target.value)} className='p-1 rounded-md border'></input>
                 </div>
-                <button onClick={handleButton} className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Change Password</button>
+                <button type="submit" className='py-2 bg-sky-600 hover:bg-sky-500 w-full rounded-md text-white cursor-pointer'>Change Password</button>
                 <Link className="hover:underline" to="/tasks">← Back</Link>
                 <Toaster />
-            </div>
+            </form>
         </div>
     )
 }

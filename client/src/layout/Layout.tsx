@@ -8,8 +8,8 @@ export const Layout = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    context?.logout();
+  const handleLogout = async () => {
+    await context?.logout();
     navigate('/login');
   };
 

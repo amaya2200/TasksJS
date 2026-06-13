@@ -101,6 +101,28 @@ const authMiddleware = {
         }
     },
 
-}
+    validateChangePassword(req: Request, res: Response, next: NextFunction) {
+        const { username, password, newPassword } = req.body;
+
+        try {
+            validateCredentials(username, password);
+
+            if (!newPassword) {throw new Error('New password required');}
+
+            validatePassword(newPassword);
+
+            next();
+
+        } catch (error) {
+
+            if (error instanceof Error) {
+                return res.status(400).json({message: error.message,});
+            }
+
+            return res.status(400).json({message: 'Validation Error',});
+        }
+    }
+
+};
 
 export default authMiddleware;

@@ -18,9 +18,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
-    await authService.logout();
-    setIsAuthenticated(false);
-    setUsername('');
+    const response = await authService.logout();
+    if(response.status === 200){
+      setIsAuthenticated(false);
+      setUsername('');
+    }
   };
 
   useEffect(() => {
